@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese Chaska — A Little Wok Magic</title>
+<meta name="description" content="Discover bold Chinese flavours at Chinese Chaska. Explore our signature noodles, momos, rice bowls and wok specials.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#d83225;
+  --red-dark:#a51f18;
+  --cream:#fff8ed;
+  --paper:#f6eddd;
+  --green:#174e3b;
+  --green-light:#dce8d9;
+  --ink:#25241f;
+  --muted:#77746b;
+  --gold:#f3b64c;
+  --line:rgba(37,36,31,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+img{display:block;width:100%;height:100%;object-fit:cover}
+::selection{background:var(--red);color:white}
+.container{width:min(1180px,90%);margin:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:2.5px;font-weight:800;text-transform:uppercase}
+.eyebrow:before{content:"";height:2px;width:23px;background:currentColor}
+h1,h2,h3{font-family:"Playfair Display",serif}
+h2{font-size:clamp(36px,5vw,62px);line-height:1.07;letter-spacing:-1.8px}
+.section-intro{color:var(--muted);line-height:1.8;max-width:440px;font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:0;padding:16px 23px;border-radius:4px;font-weight:800;font-size:12px;transition:.25s}
+.btn-red{background:var(--red);color:white}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-3px);box-shadow:0 10px 25px #d832252d}
+.btn-light{border:1px solid var(--line);background:transparent}
+.btn-light:hover{background:white;transform:translateY(-2px)}
+.btn-arrow{font-size:18px}
+.top-strip{background:var(--green);color:#fff9ec;text-align:center;padding:9px 15px;font-size:10px;letter-spacing:1.6px;font-weight:700}
+nav{height:78px;display:flex;align-items:center;justify-content:space-between;background:var(--cream);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand-mark{width:42px;height:42px;border-radius:50%;background:var(--red);display:grid;place-items:center;color:white;font-size:23px}
+.brand-name{font-family:"Playfair Display",serif;font-size:22px;font-weight:800;letter-spacing:-.7px}
+.brand-name small{display:block;font-family:"DM Sans",sans-serif;font-size:8px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:31px;font-size:12px;font-weight:700}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.cart-btn{border:1px solid var(--line);background:transparent;border-radius:4px;padding:11px 14px;font-size:12px;font-weight:800}
+.cart-count{color:var(--red)}
+.mobile-toggle{display:none;border:0;background:none;font-size:26px;color:var(--ink)}
+/* HERO */
+.hero{position:relative;min-height:690px;background:var(--cream);overflow:hidden;isolation:isolate}
+.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;min-height:690px;align-items:center;gap:10px}
+.hero-copy{padding:65px 0 85px;position:relative;z-index:3}
+.hero-copy .eyebrow{color:var(--red);margin-bottom:25px}
+.hero h1{font-size:clamp(56px,7.3vw,99px);line-height:.98;letter-spacing:-5px;margin-bottom:26px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero-copy>p{font-size:15px;line-height:1.9;color:var(--muted);max-width:405px;margin-bottom:29px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-note{display:flex;align-items:center;gap:12px;margin-top:40px;font-size:11px;color:var(--muted)}
+.note-stars{color:var(--gold);letter-spacing:2px;font-size:15px}
+.hero-art{position:relative;min-height:590px;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.art-disc{position:absolute;width:min(47vw,520px);aspect-ratio:1;background:#f2e3ca;border-radius:50%;right:0;top:50%;transform:translateY(-46%)}
+.art-disc:after{content:"";position:absolute;inset:22px;border:1px dashed #b8a88a;border-radius:50%}
+.hero-stamp{position:absolute;right:0;top:16%;width:100px;height:100px;background:var(--green);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;letter-spacing:1.5px;line-height:1.7;transform:rotate(12deg);z-index:8}
+.hero-stamp b{font-size:23px;display:block}
+.food-photo{position:absolute;width:260px;height:190px;object-fit:cover;border:7px solid var(--cream);box-shadow:0 18px 45px #50311c1c;z-index:3}
+.photo-one{left:-2%;bottom:14%;transform:rotate(-8deg);border-radius:5px}
+.photo-two{right:-2%;bottom:8%;width:200px;height:160px;transform:rotate(7deg);border-radius:5px}
+/* Custom illustrated bowl and scroll-drawn noodles */
+.noodle-stage{position:absolute;width:min(100%,490px);height:540px;z-index:4;top:50%;left:50%;transform:translate(-48%,-49%)}
+.noodle-stage svg{width:100%;height:100%;overflow:visible}
+.noodle-path{fill:none;stroke:#d18a36;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.noodle-path.thin{stroke:#f3bd63;stroke-width:3.3}
+.chopstick{stroke:#65371e;stroke-width:7;stroke-linecap:round}
+.chopstick-highlight{stroke:#b97b42;stroke-width:1.5;stroke-linecap:round}
+.bowl-shadow{fill:#4a291b;opacity:.12}
+.bowl-outer{fill:var(--red)}
+.bowl-rim{fill:#a51f18;stroke:#f5c76f;stroke-width:3}
+.bowl-inside{fill:#f4d6a1}
+.bowl-decoration{fill:none;stroke:#f8dca1;stroke-width:2.5}
+.bowl-foot{fill:#a51f18}
+.bowl-symbol{fill:#fff0c9;font-family:serif;font-size:24px}
+.bowl-noodle{fill:none;stroke:#d18a36;stroke-width:5;stroke-linecap:round}
+.hero-label{position:absolute;left:6%;top:24%;z-index:5;background:#fff8ed;border:1px solid var(--line);padding:12px 16px;box-shadow:0 8px 30px #5a34160d;transform:rotate(-5deg)}
+.hero-label small{display:block;font-size:9px;color:var(--muted);letter-spacing:1.5px;font-weight:800;text-transform:uppercase}
+.hero-label strong{font-family:"Playfair Display",serif;font-size:19px;color:var(--green)}
+.scroll-hint{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);z-index:5}
+.scroll-line{width:32px;height:1px;background:var(--red)}
+/* ticker */
+.ticker{background:var(--red);color:white;overflow:hidden;padding:17px 0;transform:rotate(-1deg) scale(1.02);position:relative;z-index:5}
+.ticker-track{display:flex;width:max-content;animation:marquee 27s linear infinite}
+.ticker span{font-family:"Playfair Display",serif;font-size:19px;white-space:nowrap;padding:0 25px}
+.ticker b{color:#ffc96b;font-family:"DM Sans",sans-serif;font-size:13px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+/* Menu */
+.menu-section{padding:115px 0 105px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:42px}
+.section-head .eyebrow{color:var(--red);margin-bottom:16px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:29px}
+.filter{padding:10px 17px;border:1px solid var(--line);border-radius:30px;background:transparent;font-size:11px;font-weight:700;transition:.2s}
+.filter.active,.filter:hover{background:var(--green);color:white;border-color:var(--green)}
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:19px}
+.food-card{background:#fffdf7;border:1px solid var(--line);transition:transform .3s,box-shadow .3s;min-width:0}
+.food-card:hover{transform:translateY(-7px);box-shadow:0 16px 35px #34251612}
+.food-image{height:205px;position:relative;overflow:hidden;background:#e9dfce}
+.food-image img{transition:transform .55s}
+.food-card:hover .food-image img{transform:scale(1.06)}
+.food-tag{position:absolute;top:12px;left:12px;background:var(--cream);padding:7px 10px;font-size:9px;letter-spacing:1px;font-weight:800;text-transform:uppercase}
+.food-content{padding:20px 17px}
+.food-title-line{display:flex;justify-content:space-between;gap:8px;align-items:start}
+.food-content h3{font-size:20px;line-height:1.2}
+.price{font-weight:800;font-size:14px;color:var(--red);white-space:nowrap}
+.food-content p{font-size:11px;line-height:1.8;color:var(--muted);margin:11px 0 19px;min-height:40px}
+.add-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:11px 12px;background:transparent;border:1px solid var(--line);font-size:11px;font-weight:800;transition:.2s}
+.add-btn:hover{background:var(--red);color:white;border-color:var(--red)}
+.add-btn span{font-size:18px}
+/* feature */
+.story{background:var(--green);color:var(--cream);padding:100px 0;position:relative;overflow:hidden}
+.story:after{content:"食";font-family:serif;font-size:420px;position:absolute;right:-30px;bottom:-155px;opacity:.055;line-height:1;pointer-events:none}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.story-photo{height:480px;position:relative}
+.story-photo img{border-radius:3px;position:relative;z-index:1}
+.story-photo:before{content:"";position:absolute;inset:18px -18px -18px 18px;border:1px solid #f8e8c17d}
+.photo-caption{position:absolute;z-index:2;bottom:-24px;right:-24px;background:var(--gold);color:var(--ink);padding:20px 23px;transform:rotate(3deg)}
+.photo-caption strong{font-family:"Playfair Display",serif;font-size:24px;display:block}
+.photo-caption small{font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.story-copy{position:relative;z-index:2}
+.story-copy .eyebrow{color:var(--gold);margin-bottom:20px}
+.story-copy h2{margin-bottom:24px}
+.story-copy>p{font-size:13px;line-height:2;color:#d5dfd7;margin-bottom:18px}
+.story-points{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:30px 0}
+.story-point{border-top:1px solid #ffffff32;padding-top:14px}
+.story-point b{display:block;font-size:12px;margin-bottom:7px}
+.story-point span{font-size:11px;color:#c0d0c4;line-height:1.7}
+.story-copy .btn{background:var(--gold);color:var(--ink)}
+/* offer */
+.special{padding:100px 0}
+.special-box{background:var(--paper);display:grid;grid-template-columns:1fr 1fr;min-height:370px;overflow:hidden}
+.special-copy{padding:55px 10%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.special-copy .eyebrow{color:var(--red);margin-bottom:17px}
+.special-copy h2{font-size:clamp(35px,4vw,51px);margin-bottom:18px}
+.special-copy p{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:24px;max-width:380px}
+.special-visual{position:relative;min-height:350px;overflow:hidden;background:#e5d4b7}
+.special-visual img{position:absolute;inset:0}
+.special-badge{position:absolute;top:25px;right:25px;background:var(--red);color:white;border-radius:50%;width:93px;height:93px;display:grid;place-items:center;text-align:center;font-size:10px;font-weight:800;line-height:1.5;transform:rotate(9deg)}
+/* reviews */
+.reviews{padding:20px 0 105px}
+.reviews-head{text-align:center;margin-bottom:42px}
+.reviews-head .eyebrow{color:var(--red);margin-bottom:16px}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{border:1px solid var(--line);padding:28px;background:#fffdf7}
+.review-stars{color:#d99a2b;letter-spacing:3px;font-size:13px;margin-bottom:18px}
+.review blockquote{font-family:"Playfair Display",serif;font-size:19px;line-height:1.6;margin-bottom:25px}
+.review small{font-size:10px;letter-spacing:1px;font-weight:800;text-transform:uppercase;color:var(--muted)}
+/* footer */
+footer{background:#1d2e27;color:var(--cream);padding:65px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:45px;padding-bottom:50px}
+.footer-brand .brand-name small{color:#c2cec5}
+.footer-brand p{color:#b8c4bb;font-size:12px;line-height:1.9;margin-top:20px;max-width:250px}
+.footer-col h4{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+.footer-col a,.footer-col p{display:block;color:#c0ccc2;font-size:12px;line-height:2.4}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid #ffffff26;padding-top:22px;display:flex;justify-content:space-between;gap:20px;font-size:10px;color:#aebbb1}
+.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);background:var(--green);color:white;padding:14px 22px;font-size:12px;font-weight:700;z-index:100;border-radius:5px;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 10px 30px #0002}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(min-width:1500px){.hero{min-height:760px}.hero-grid{min-height:760px}}
+@media(max-width:950px){
+ .nav-links{gap:17px}
+ .hero-grid{grid-template-columns:.9fr 1.1fr}
+ .hero h1{font-size:clamp(54px,8vw,78px)}
+ .noodle-stage{transform:translate(-50%,-49%) scale(.9)}
+ .food-photo{width:190px;height:145px}
+ .photo-two{width:155px;height:125px}
+ .menu-grid{grid-template-columns:repeat(2,1fr)}
+ .food-image{height:245px}
+ .story-grid{gap:45px}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+ .container{width:89%}
+ .top-strip{font-size:9px}
+ nav{height:68px}
+ .brand-name{font-size:20px}
+ .brand-mark{width:37px;height:37px}
+ .mobile-toggle{display:block}
+ .nav-actions .btn{display:none}
+ .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);padding:25px 6%;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:23px}
+ .nav-links.open{display:flex}
+ .nav-inner{gap:10px}
+ .cart-btn{padding:10px;font-size:11px}
+ .hero{min-height:auto}
+ .hero-grid{grid-template-columns:1fr;min-height:auto}
+ .hero-copy{padding:58px 0 0}
+ .hero h1{font-size:clamp(58px,15vw,86px);letter-spacing:-3px}
+ .hero-copy>p{font-size:13px;max-width:330px}
+ .hero-note{margin-top:24px}
+ .hero-art{min-height:430px;margin-top:-4px}
+ .art-disc{width:min(88vw,410px);right:50%;transform:translate(50%,-45%)}
+ .noodle-stage{height:430px;width:100%;transform:translate(-50%,-49%) scale(.91)}
+ .hero-stamp{right:0;top:7%;width:78px;height:78px;font-size:8px}
+ .hero-stamp b{font-size:19px}
+ .hero-label{top:15%;left:0;padding:9px 12px}
+ .hero-label strong{font-size:15px}
+ .food-photo{width:145px;height:112px;border-width:5px}
+ .photo-one{left:-1%;bottom:5%}
+ .photo-two{right:-1%;bottom:2%;width:120px;height:95px}
+ .scroll-hint{bottom:13px;font-size:8px}
+ .ticker{padding:13px 0}
+ .ticker span{font-size:16px;padding:0 18px}
+ .menu-section{padding:80px 0}
+ .section-head{align-items:flex-start;flex-direction:column;margin-bottom:28px}
+ h2{letter-spacing:-1px}
+ .section-intro{font-size:13px}
+ .filters{gap:7px}
+ .filter{padding:9px 12px;font-size:10px}
+ .menu-grid{gap:12px}
+ .food-image{height:155px}
+ .food-content{padding:14px 11px}
+ .food-content h3{font-size:17px}
+ .food-content p{font-size:10px;min-height:54px}
+ .price{font-size:12px}
+ .food-tag{font-size:8px;padding:6px 7px}
+ .add-btn{font-size:10px;padding:10px 9px}
+ .story{padding:75px 0}
+ .story-grid{grid-template-columns:1fr;gap:55px}
+ .story-photo{height:350px;margin-right:12px}
+ .photo-caption{right:-10px}
+ .story-copy h2{font-size:45px}
+ .story-copy>p{font-size:12px}
+ .special{padding:70px 0}
+ .special-box{grid-template-columns:1fr}
+ .special-copy{padding:38px 8%}
+ .special-visual{min-height:260px}
+ .reviews{padding:10px 0 75px}
+ .reviews-grid{grid-template-columns:1fr}
+ .review{padding:23px}
+ .review blockquote{font-size:18px}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:32px 20px}
+ .footer-brand{grid-column:1/-1}
+ .footer-bottom{flex-direction:column;line-height:1.7}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+ .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="top-strip">WOK-TOSSED WITH LOVE · BIG FLAVOURS, BIGGER CHASKA ✦</div>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#home" aria-label="Chinese Chaska home">
+      <span class="brand-mark">中</span>
+      <span class="brand-name">Chinese Chaska<small>A little wok magic</small></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#menu">Our Menu</a>
+      <a href="#story">Our Story</a>
+      <a href="#special">Specials</a>
+      <a href="#contact">Find Us</a>
+    </div>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtn" aria-label="View your order">BAG <span class="cart-count" id="cartCount">0</span></button>
+      <a href="#menu" class="btn btn-red">Order food ↗</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Your neighbourhood wok stop</div>
+      <h1>Good food.<br>Full <em>chaska.</em></h1>
+      <p>That smoky wok aroma. Those saucy noodles. That one last momo you said you wouldn't eat. Welcome to your new favourite Chinese food spot.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-red">Explore the menu <span class="btn-arrow">↗</span></a>
+        <a href="#story" class="btn btn-light">Our little story</a>
+      </div>
+      <div class="hero-note"><span class="note-stars">★★★★★</span><span>Made fresh. Served hot. Gone fast.</span></div>
+    </div>
+
+    <div class="hero-art" id="heroArt">
+      <div class="art-disc"></div>
+      <div class="hero-label"><small>The craving is real</small><strong>Slurp happens.</strong></div>
+      <div class="hero-stamp"><div><b>鲜</b>FRESH<br>FROM THE WOK</div></div>
+
+      <div class="noodle-stage">
+        <svg id="noodleSvg" viewBox="0 0 500 560" role="img" aria-label="Illustration of noodles being lifted from a Chinese bowl with chopsticks">
+          <defs>
+            <clipPath id="bowlClip"><ellipse cx="250" cy="421" rx="111" ry="29"/></clipPath>
+          </defs>
+          <ellipse class="bowl-shadow" cx="250" cy="475" rx="133" ry="20"/>
+          <!-- Chopsticks waiting at the top -->
+          <g>
+            <path class="chopstick" d="M245 38 L331 245"/>
+            <path class="chopstick-highlight" d="M243 39 L329 244"/>
+            <path class="chopstick" d="M276 27 L357 239"/>
+            <path class="chopstick-highlight" d="M274 28 L355 238"/>
+          </g>
+          <!-- Noodles are drawn in by the scroll animation -->
+          <g id="noodleGroup">
+            <path class="noodle-path" d="M250 414 C221 391 282 373 247 346 S228 293 270 264 S289 206 280 179 S286 130 306 112"/>
+            <path class="noodle-path thin" d="M263 418 C291 392 231 371 263 342 S282 299 252 272 S246 221 266 191 S258 145 302 112"/>
+            <path class="noodle-path" d="M236 419 C205 392 250 377 226 350 S250 304 235 278 S211 233 242 207 S270 157 299 113"/>
+            <path class="noodle-path thin" d="M276 420 C305 397 256 381 282 350 S262 309 278 280 S295 234 266 204 S280 154 304 113"/>
+            <path class="noodle-path" d="M248 421 C267 393 212 382 246 355 S222 307 253 284 S263 236 247 213 S282 155 305 114"/>
+            <path class="noodle-path thin" d="M226 419 C199 398 248 388 220 360 S243 321 222 292 S228 245 256 218 S253 162 301 112"/>
+            <path class="noodle-path" d="M266 418 C236 392 294 387 270 359 S294 314 263 289 S277 245 263 215 S291 162 305 113"/>
+            <path class="noodle-path thin" d="M243 417 C281 393 237 378 258 351 S241 311 263 282 S235 239 266 212 S267 159 304 112"/>
+          </g>
+          <!-- A few noodles already sitting in the bowl -->
+          <g clip-path="url(#bowlClip)">
+            <path class="bowl-noodle" d="M160 421 Q190 396 219 420 T276 419 T340 415"/>
+            <path class="bowl-noodle" d="M170 429 Q204 404 238 427 T302 423 T342 424"/>
+            <path class="bowl-noodle" d="M185 415 Q219 438 250 414 T313 421"/>
+          </g>
+          <!-- Bowl -->
+          <path class="bowl-outer" d="M132 420 Q143 493 197 510 Q250 526 303 510 Q357 493 368 420 Z"/>
+          <ellipse class="bowl-rim" cx="250" cy="420" rx="119" ry="34"/>
+          <ellipse class="bowl-inside" cx="250" cy="419" rx="107" ry="25"/>
+          <path class="bowl-decoration" d="M160 445 Q250 464 340 445"/>
+          <path class="bowl-decoration" d="M180 476 Q250 491 320 476"/>
+          <path class="bowl-foot" d="M209 509 Q250 522 291 509 L285 521 Q250 532 215 521 Z"/>
+          <text class="bowl-symbol" x="250" y="482" text-anchor="middle">福</text>
+        </svg>
+      </div>
+
+      <img class="food-photo photo-one" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=85" alt="A bowl of delicious Asian noodles" loading="eager">
+      <img class="food-photo photo-two" src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=500&q=85" alt="Freshly prepared Chinese dumplings" loading="eager">
+    </div>
+  </div>
+  <div class="scroll-hint"><span class="scroll-line"></span> Scroll for the good stuff <span class="scroll-line"></span></div>
+</section>
+
+<div class="ticker" aria-label="Our food philosophy">
+  <div class="ticker-track">
+    <span>NOODLES WORTH SLURPING <b>✳</b></span><span>SAUCE WITH SOUL <b>✳</b></span><span>MOMO MOOD ALWAYS <b>✳</b></span><span>FRESH OFF THE WOK <b>✳</b></span><span>NOODLES WORTH SLURPING <b>✳</b></span><span>SAUCE WITH SOUL <b>✳</b></span><span>MOMO MOOD ALWAYS <b>✳</b></span><span>FRESH OFF THE WOK <b>✳</b></span>
+  </div>
+</div>
+
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Straight from our kitchen</div><h2>The cravings<br>menu.</h2></div>
+      <p class="section-intro">The classics you love, with the kind of flavour that makes you close your eyes on the first bite. Go on, pick your mood.</p>
+    </div>
+    <div class="filters reveal" aria-label="Filter menu">
+      <button class="filter active" data-filter="all">Everything</button>
+      <button class="filter" data-filter="noodles">Noodles</button>
+      <button class="filter" data-filter="starters">Starters</button>
+      <button class="filter" data-filter="momos">Momos</button>
+      <button class="filter" data-filter="rice">Rice &amp; more</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <article class="food-card reveal" data-category="noodles">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=85" alt="Hakka noodles" loading="lazy"><span class="food-tag">Fan favourite</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Hakka Noodles</h3><span class="price">₹149</span></div><p>Wok-tossed noodles, crunchy veggies and our signature smoky sauce.</p><button class="add-btn" data-name="Hakka Noodles" data-price="149">Add to bag <span>+</span></button></div>
+      </article>
+      <article class="food-card reveal" data-category="momos">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=700&q=85" alt="Steamed dumplings" loading="lazy"><span class="food-tag">Momo mood</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Steamed Momos</h3><span class="price">₹99</span></div><p>Soft little pockets of joy, served with a punchy red chutney.</p><button class="add-btn" data-name="Steamed Momos" data-price="99">Add to bag <span>+</span></button></div>
+      </article>
+      <article class="food-card reveal" data-category="starters">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=85" alt="Crispy chilli starter" loading="lazy"><span class="food-tag">Crunch alert</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Chilli Bites</h3><span class="price">₹129</span></div><p>Crispy bites tossed in a spicy, sticky, finger-licking sauce.</p><button class="add-btn" data-name="Chilli Bites" data-price="129">Add to bag <span>+</span></button></div>
+      </article>
+      <article class="food-card reveal" data-category="rice">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=85" alt="Fried rice with vegetables" loading="lazy"><span class="food-tag">Comfort food</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Wok Fried Rice</h3><span class="price">₹139</span></div><p>Fluffy rice, garden-fresh veggies and that unmistakable wok hei.</p><button class="add-btn" data-name="Wok Fried Rice" data-price="139">Add to bag <span>+</span></button></div>
+      </article>
+      <article class="food-card reveal" data-category="starters">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=85" alt="Asian stir-fried food" loading="lazy"><span class="food-tag">Saucy business</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Chilli Paneer</h3><span class="price">₹179</span></div><p>Golden paneer, peppers and an addictive Indo-Chinese kick.</p><button class="add-btn" data-name="Chilli Paneer" data-price="179">Add to bag <span>+</span></button></div>
+      </article>
+      <article class="food-card reveal" data-category="noodles">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=700&q=85" alt="Asian noodle dish" loading="lazy"><span class="food-tag">Spice lover</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Schezwan Noodles</h3><span class="price">₹169</span></div><p>Hot, garlicky, fiery noodles for the ones who like it bold.</p><button class="add-btn" data-name="Schezwan Noodles" data-price="169">Add to bag <span>+</span></button></div>
+      </article>
+      <article class="food-card reveal" data-category="momos">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=700&q=85" alt="Pan-fried dumplings" loading="lazy"><span class="food-tag">Crispy outside</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Pan-Fried Momos</h3><span class="price">₹119</span></div><p>A golden, crispy base with a soft filling. Dip generously.</p><button class="add-btn" data-name="Pan-Fried Momos" data-price="119">Add to bag <span>+</span></button></div>
+      </article>
+      <article class="food-card reveal" data-category="rice">
+        <div class="food-image"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85" alt="Fresh Asian bowl" loading="lazy"><span class="food-tag">A proper meal</span></div>
+        <div class="food-content"><div class="food-title-line"><h3>Chaska Combo</h3><span class="price">₹229</span></div><p>Your favourites together in one satisfying, flavour-packed combo.</p><button class="add-btn" data-name="Chaska Combo" data-price="229">Add to bag <span>+</span></button></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="container story-grid">
+    <div class="story-photo reveal">
+      <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1000&q=85" alt="Colourful Asian food prepared with fresh ingredients" loading="lazy">
+      <div class="photo-caption"><strong>Fresh. Hot. Full of chaska.</strong><small>That's our kind of magic.</small></div>
+    </div>
+    <div class="story-copy reveal">
+      <div class="eyebrow">More than a meal</div>
+      <h2>Small kitchen.<br>Big flavour energy.</h2>
+      <p>We believe good food should bring people together. The table gets louder, the chopsticks get faster, and someone always reaches for the last bite.</p>
+      <p>At Chinese Chaska, it's all about fresh ingredients, sizzling woks and flavours that keep you coming back. No complicated rules. Just really good food.</p>
+      <div class="story-points">
+        <div class="story-point"><b>01 — Made fresh</b><span>Prepared to order, with care in every toss.</span></div>
+        <div class="story-point"><b>02 — Full of flavour</b><span>Bold sauces and a little bit of magic.</span></div>
+        <div class="story-point"><b>03 — Made to share</b><span>Bring your people. Order one more plate.</span></div>
+        <div class="story-point"><b>04 — Always welcoming</b><span>Come hungry, leave happy.</span></div>
+      </div>
+      <a href="#menu" class="btn">Find your next favourite ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="special" id="special">
+  <div class="container">
+    <div class="special-box reveal">
+      <div class="special-copy">
+        <div class="eyebrow">A little something extra</div>
+        <h2>Your table.<br>Your people.<br>One more plate.</h2>
+        <p>Planning a catch-up, a family dinner or just a serious noodle craving? Build your own feast from the menu.</p>
+        <a href="#menu" class="btn btn-red">Let's eat <span class="btn-arrow">↗</span></a>
+      </div>
+      <div class="special-visual">
+        <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?auto=format&fit=crop&w=1100&q=85" alt="A colourful spread of Asian dishes to share" loading="lazy">
+        <div class="special-badge">GOOD FOOD<br>GOOD MOOD<br>ALWAYS ✳</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="container">
+    <div class="reviews-head reveal"><div class="eyebrow">A seat at our table</div><h2>Food tastes better<br>together.</h2></div>
+    <div class="reviews-grid">
+      <article class="review reveal"><div class="review-stars">★★★★★</div><blockquote>“The plan was to share the noodles. The plan did not survive the noodles.”</blockquote><small>— The noodle enthusiast</small></article>
+      <article class="review reveal"><div class="review-stars">★★★★★</div><blockquote>“Went in for a quick snack. Left planning what to order next time.”</blockquote><small>— The regular-in-training</small></article>
+      <article class="review reveal"><div class="review-stars">★★★★★</div><blockquote>“Momos, spicy sauce and absolutely no regrets. That's the review.”</blockquote><small>— The momo loyalist</small></article>
+    </div>
+    <p style="text-align:center;font-size:10px;color:var(--muted);margin-top:20px">Illustrative quotes for this website concept, not verified customer reviews.</p>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home"><span class="brand-mark">中</span><span class="brand-name">Chinese Chaska<small>A little wok magic</small></span></a>
+        <p>For the noodle lovers, the momo hunters and everyone who believes life is better with one more plate.</p>
+      </div>
+      <div class="footer-col"><h4>Take a look</h4><a href="#menu">Our menu</a><a href="#story">Our story</a><a href="#special">Specials</a><a href="#home">Back to top ↑</a></div>
+      <div class="footer-col"><h4>Say hello</h4><a href="tel:+910000000000">Add your phone number</a><a href="mailto:hello@yourrestaurant.com">Add your email</a><p>Replace with your restaurant details</p></div>
+      <div class="footer-col"><h4>Come hungry</h4><p>Add your restaurant address</p><p>Add your opening hours</p><p>Walk-ins welcome*</p></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Chinese Chaska. Made with a little extra chaska.</span><span>GOOD FOOD. GOOD MOOD. 🥢</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const $ = (s, root=document) => root.querySelector(s);
+  const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+
+  // Scroll-drawn noodles: the strands grow from the bowl towards the chopsticks.
+  const hero = $('#home');
+  const paths = $$('.noodle-path');
+  paths.forEach(path => {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = length;
+    path.style.strokeDashoffset = length;
+    path.dataset.length = length;
+  });
+
+  let ticking = false;
+  function updateNoodles() {
+    const rect = hero.getBoundingClientRect();
+    const range = Math.max(1, hero.offsetHeight - window.innerHeight * 0.35);
+    const progress = Math.max(0, Math.min(1, -rect.top / range));
+    paths.forEach((path, i) => {
+      const length = Number(path.dataset.length);
+      // Slightly stagger the strands so they feel like real noodles.
+      const p = Math.max(0, Math.min(1, (progress * 1.22) - (i % 4) * 0.035));
+      path.style.strokeDashoffset = length * (1 - p);
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateNoodles);
+      ticking = true;
+    }
+  }, {passive:true});
+  window.addEventListener('resize', updateNoodles);
+  updateNoodles();
+
+  // Reveal sections as they enter the viewport.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
+    $$('.reveal').forEach(el => observer.observe(el));
+  } else {
+    $$('.reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  // Menu category filtering.
+  $$('.filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('.filter').forEach(b => b.classList.toggle('active', b === btn));
+      const filter = btn.dataset.filter;
+      $$('.food-card').forEach(card => {
+        card.hidden = filter !== 'all' && card.dataset.category !== filter;
+      });
+    });
+  });
+
+  // Demo shopping bag. This is a front-end demo, not a payment or delivery service.
+  const bag = [];
+  const toast = $('#toast');
+  let toastTimer;
+  function notify(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+  function updateBag() {
+    $('#cartCount').textContent = bag.length;
+  }
+  $$('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bag.push({name:btn.dataset.name, price:Number(btn.dataset.price)});
+      updateBag();
+      notify(btn.dataset.name + ' added to your bag 🥢');
+    });
+  });
+  $('#cartBtn').addEventListener('click', () => {
+    if (!bag.length) {
+      notify('Your bag is hungry. Add something delicious!');
+      return;
+    }
+    const total = bag.reduce((sum, item) => sum + item.price, 0);
+    const items = bag.map(item => item.name).join(', ');
+    notify('Your bag: ' + items + ' · Total ₹' + total);
+  });
+
+  // Mobile navigation.
+  const toggle = $('#mobileToggle');
+  const links = $('#navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? '×' : '☰';
+  });
+  $$('#navLinks a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.textContent = '☰';
+  }));
+  $('#year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
